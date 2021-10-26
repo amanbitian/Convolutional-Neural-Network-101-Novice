@@ -108,14 +108,23 @@ It’s surprising that dropout works at all. We are disabling neurons on purpose
 Let’s visualize dropout, it will be much easier to understand.
 
 ## Graph interpret these training curves
+1.
 ![Loss fun](https://user-images.githubusercontent.com/86042628/138903115-3f22aedd-b63d-4fcb-b338-377702badbd2.PNG)
 The learning curves for the model from the tutorial diverged fairly rapidly. This would indicate that it was `prone to overfitting` and in **need of some regularization.** The **additional layer in our new model would make it even more prone to overfitting.** However, adding some regularization with the Dropout layer helped prevent this. These changes improved the validation accuracy of the model by several points.
 
+2.
 ![loss fun 2](https://user-images.githubusercontent.com/86042628/138906945-8e8ee7c5-6420-4ca1-b2e3-e5b3ce4081fb.PNG)
 
 That the `training loss and validation loss` stay fairly close is evidence that the *model isn't just memorizing the training data, but rather learning general properties of the two classes.* But, because this model converges at a loss greater than the VGG16 model, it's likely that it is **underfitting** some, and could benefit from some extra capacity.
 
 * Differences between validation loss (val_loss) and training loss (loss) is that, when using dropout, validation loss can be lower than training loss (usually not expected in cases where dropout is not used)
+
+3. 
+![loss fun 3](https://user-images.githubusercontent.com/86042628/138912692-986ac675-7a26-4f95-b1b3-85cb634bac53.PNG)
+
+The learning curves in this model stayed close together for much longer than in previous models. This suggests that the augmentation **helped prevent overfitting, allowing the model to continue improving.**
+
+And notice that this model achieved the highest accuracy of all the models in the course! `This won't always be the case,` but it shows that a well-designed custom convnet can sometimes perform as well or better than a much larger pretrained model. Depending on your application, having a smaller model (which requires fewer resources) could be a big advantage.
 
 ## This repository contains 
 1. Fashion MNIST 
