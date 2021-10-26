@@ -1,4 +1,4 @@
-# Convolutional-Neural-Network-101-Novice
+# Convolutional-Neural-Network-101- Beginner's Guide
 
 ## Architechture
 ![1_uulvWMFJMidBfbH9tMVNTw@2x](https://user-images.githubusercontent.com/86042628/138884826-bc3d312e-f3d2-4fcb-af9c-fef09e8f0458.png)
