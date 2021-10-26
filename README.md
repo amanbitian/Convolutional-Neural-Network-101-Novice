@@ -38,6 +38,9 @@ The strides parameter says how far the window should move at each step, and the 
 padding with eg
 For a gray scale (n x n) image and (f x f) filter/kernel, the dimensions of the image resulting from a convolution operation is (n – f + 1) x (n – f + 1). 
 p = number of layers of zeros added to the border of the image, then our (n x n) image becomes (n + 2p) x (n + 2p) image after padding. So, applying convolution-operation (with (f x f) filter) outputs (n + 2p – f + 1) x (n + 2p – f + 1) images. 
+
+condensing with maximum pooling. `Pooling is one of the essential features of convolutional networks` and helps provide them with some of their characteristic **advantages:** `efficiency with visual data, reduced parameter size compared to dense networks, translation invariance.` We've seen that it's used not only in the base during feature extraction, but also can be used in the head during classification. Understanding it is essential to a full understanding of convnets.
+
 **Valid Padding:** It implies no padding at all. The input image is left in its valid/unaltered shape. 
 So, [(n x n) image] * [(f x f) filter] —> [(n – f + 1) x (n – f + 1) image]  {where * represents a convolution operation}
 
@@ -104,6 +107,15 @@ During training time, at each iteration, a neuron is temporarily “dropped” o
 It’s surprising that dropout works at all. We are disabling neurons on purpose and the network actually performs better. The reason is that dropout prevents the network to be too dependent on a small number of neurons, and forces every neuron to be able to operate independently. This might sound familiar from constraining the code size of the autoencoder in Part 3, in order to learn more intelligent representations.
 Let’s visualize dropout, it will be much easier to understand.
 
+## Graph interpret these training curves
+![Loss fun](https://user-images.githubusercontent.com/86042628/138903115-3f22aedd-b63d-4fcb-b338-377702badbd2.PNG)
+The learning curves for the model from the tutorial diverged fairly rapidly. This would indicate that it was `prone to overfitting` and in **need of some regularization.** The **additional layer in our new model would make it even more prone to overfitting.** However, adding some regularization with the Dropout layer helped prevent this. These changes improved the validation accuracy of the model by several points.
+
+![loss fun 2](https://user-images.githubusercontent.com/86042628/138906945-8e8ee7c5-6420-4ca1-b2e3-e5b3ce4081fb.PNG)
+
+That the `training loss and validation loss` stay fairly close is evidence that the *model isn't just memorizing the training data, but rather learning general properties of the two classes.* But, because this model converges at a loss greater than the VGG16 model, it's likely that it is **underfitting** some, and could benefit from some extra capacity.
+
+* Differences between validation loss (val_loss) and training loss (loss) is that, when using dropout, validation loss can be lower than training loss (usually not expected in cases where dropout is not used)
 
 ## This repository contains 
 1. Fashion MNIST 
